@@ -1,6 +1,8 @@
 ﻿using VideoGameStore;
 
 using System.IO;
+using System.Configuration;
+using System.Collections.Generic;
 
 namespace NivelStocareDate
 {
@@ -8,6 +10,8 @@ namespace NivelStocareDate
     {
         private const int NR_MAX_GAMES = 50;
         private string numeFisier;
+
+        
 
         public AdministrareGames_FisierText(string numeFisier)
         {
@@ -26,11 +30,10 @@ namespace NivelStocareDate
             }
         }
 
-        public VideoGame[] GetVideoGames(out int nrGames)
+        public List<VideoGame> GetVideoGames( int nrGames)
         {
-            VideoGame[] games = new VideoGame[NR_MAX_GAMES];
-
-            
+            List<VideoGame> games = new List<VideoGame>();
+       
             using (StreamReader streamReader = new StreamReader(numeFisier))
             {
                 string linieFisier;
@@ -39,7 +42,7 @@ namespace NivelStocareDate
                 
                 while ((linieFisier = streamReader.ReadLine()) != null)
                 {
-                    games[nrGames++] = new VideoGame(linieFisier);
+                    games.Add(new VideoGame(linieFisier));
                 }
             }
 

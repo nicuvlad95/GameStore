@@ -1,5 +1,6 @@
 ﻿using NivelStocareDate;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 
@@ -41,8 +42,8 @@ namespace VideoGameStore
 
                         break;
                     case "F":
-                        VideoGame[] Games = adminGames.GetVideoGames(out nrGames);
-                        AfisareGames(Games, nrGames);
+                        List<VideoGame> Games = adminGames.GetVideoGames( nrGames);
+                        //AfisareGames(Games, nrGames);
 
                         break;
                     case "S":
