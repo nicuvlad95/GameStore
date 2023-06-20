@@ -7,7 +7,7 @@ namespace VideoGameStore
     {
         private const char SEPARATOR_PRINCIPAL_FISIER = ';';
 
-        public double IdGame = 0;
+        public int IdGame { get; set; }
         public string Title { get; set; }
         public string Publisher { get; set; }
         public string Developer { get; set; }
@@ -17,10 +17,9 @@ namespace VideoGameStore
 
         public VideoGame(string linieFisier)
         {
-            var dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
+            string[] dateFisier = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
 
-           
-            IdGame = Convert.ToDouble(dateFisier[0]);
+            IdGame = Convert.ToInt32(dateFisier[0]);
             Title = dateFisier[1];
             Publisher = dateFisier[2];
             Developer = dateFisier[3];
@@ -29,7 +28,7 @@ namespace VideoGameStore
             Price = Convert.ToDecimal(dateFisier[6]);
         }
 
-        public VideoGame( double idGame, string title, string publisher="", string developer="", DateTime releaseDate=default(DateTime), string genre="", decimal price=0)
+        public VideoGame( int idGame, string title, string publisher="", string developer="", DateTime releaseDate=default(DateTime), string genre="", decimal price=0)
         {
             IdGame = idGame; 
             Title = title;

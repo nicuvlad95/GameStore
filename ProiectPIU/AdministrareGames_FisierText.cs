@@ -23,7 +23,7 @@ namespace NivelStocareDate
 
         public void AddGame(VideoGame game)
         {
-            
+            game.IdGame = GetId();
             using (StreamWriter streamWriterFisierText = new StreamWriter(numeFisier, true))
             {
                 streamWriterFisierText.WriteLine(game.ConversieLaSir_PentruFisier());
@@ -37,16 +37,36 @@ namespace NivelStocareDate
             using (StreamReader streamReader = new StreamReader(numeFisier))
             {
                 string linieFisier;
-                nrGames = 0;
+                nrGames = 10;
 
                 
                 while ((linieFisier = streamReader.ReadLine()) != null)
                 {
-                    games.Add(new VideoGame(linieFisier));
+                    VideoGame game = new VideoGame(linieFisier);
+                    games.Add(game);
                 }
             }
 
             return games;
+        }
+        private int GetId()
+        {
+            int IdGame = 0;
+
+            
+            using (StreamReader streamReader = new StreamReader(numeFisier))
+            {
+                string linieFisier;
+
+                
+                while ((linieFisier = streamReader.ReadLine()) != null)
+                {
+                    VideoGame game = new VideoGame(linieFisier);
+                    IdGame = game.IdGame+1;
+                }
+            }
+
+            return IdGame;
         }
     }
 }

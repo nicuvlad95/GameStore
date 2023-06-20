@@ -1,4 +1,6 @@
-﻿namespace InterfataUtilizator_WindowsForms
+﻿using System.Windows.Forms;
+
+namespace InterfataUtilizator_WindowsForms
 {
     partial class Form1
     {
@@ -41,9 +43,11 @@
             this.iblPrice = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtPrice = new System.Windows.Forms.NumericUpDown();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbGenre = new System.Windows.Forms.ComboBox();
             this.dgvGames = new System.Windows.Forms.DataGridView();
             this.Cart = new System.Windows.Forms.Button();
+            this.btnCauta = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGames)).BeginInit();
             this.SuspendLayout();
@@ -112,24 +116,26 @@
             // 
             // btnAddGame
             // 
+            this.btnAddGame.BackColor = System.Drawing.Color.Turquoise;
             this.btnAddGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.btnAddGame.Location = new System.Drawing.Point(28, 289);
             this.btnAddGame.Name = "btnAddGame";
             this.btnAddGame.Size = new System.Drawing.Size(113, 63);
             this.btnAddGame.TabIndex = 9;
             this.btnAddGame.Text = "AddGame";
-            this.btnAddGame.UseVisualStyleBackColor = true;
+            this.btnAddGame.UseVisualStyleBackColor = false;
             this.btnAddGame.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnListGames
             // 
+            this.btnListGames.BackColor = System.Drawing.Color.Turquoise;
             this.btnListGames.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.btnListGames.Location = new System.Drawing.Point(166, 289);
             this.btnListGames.Name = "btnListGames";
             this.btnListGames.Size = new System.Drawing.Size(235, 63);
             this.btnListGames.TabIndex = 10;
             this.btnListGames.Text = "ListGames";
-            this.btnListGames.UseVisualStyleBackColor = true;
+            this.btnListGames.UseVisualStyleBackColor = false;
             this.btnListGames.Click += new System.EventHandler(this.btnListGames_Click);
             // 
             // iblGenre
@@ -166,36 +172,39 @@
             this.txtPrice.Size = new System.Drawing.Size(270, 27);
             this.txtPrice.TabIndex = 21;
             // 
-            // comboBox1
+            // cbGenre
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbGenre.FormattingEnabled = true;
+            this.cbGenre.Items.AddRange(new object[] {
             "action",
             "aventure",
             "rpg",
             "mmorpg",
             "pazzle",
-            "sport"});
-            this.comboBox1.Location = new System.Drawing.Point(131, 168);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(270, 28);
-            this.comboBox1.TabIndex = 22;
+            "sport",
+            "racing",
+            "FPS"});
+            this.cbGenre.Location = new System.Drawing.Point(131, 168);
+            this.cbGenre.Name = "cbGenre";
+            this.cbGenre.Size = new System.Drawing.Size(270, 28);
+            this.cbGenre.TabIndex = 22;
+            this.cbGenre.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dgvGames
             // 
             this.dgvGames.BackgroundColor = System.Drawing.Color.MediumTurquoise;
             this.dgvGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGames.Location = new System.Drawing.Point(467, 91);
+            this.dgvGames.Location = new System.Drawing.Point(467, 60);
             this.dgvGames.Name = "dgvGames";
             this.dgvGames.RowHeadersWidth = 51;
             this.dgvGames.RowTemplate.Height = 24;
-            this.dgvGames.Size = new System.Drawing.Size(769, 374);
+            this.dgvGames.Size = new System.Drawing.Size(961, 373);
             this.dgvGames.TabIndex = 23;
             // 
             // Cart
             // 
             this.Cart.BackColor = System.Drawing.Color.LightCoral;
-            this.Cart.Location = new System.Drawing.Point(1141, 13);
+            this.Cart.Location = new System.Drawing.Point(1333, 12);
             this.Cart.Name = "Cart";
             this.Cart.Size = new System.Drawing.Size(95, 45);
             this.Cart.TabIndex = 24;
@@ -204,13 +213,33 @@
             this.Cart.UseVisualStyleBackColor = false;
             this.Cart.Click += new System.EventHandler(this.Cart_Click);
             // 
+            // btnCauta
+            // 
+            this.btnCauta.BackColor = System.Drawing.Color.LightGreen;
+            this.btnCauta.Location = new System.Drawing.Point(747, 24);
+            this.btnCauta.Name = "btnCauta";
+            this.btnCauta.Size = new System.Drawing.Size(111, 30);
+            this.btnCauta.TabIndex = 25;
+            this.btnCauta.Text = "search";
+            this.btnCauta.UseVisualStyleBackColor = false;
+            this.btnCauta.Click += new System.EventHandler(this.btnCauta_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(467, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(262, 27);
+            this.txtSearch.TabIndex = 26;
+            // 
             // Form1
             // 
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1248, 492);
+            this.BackColor = System.Drawing.Color.LightCyan;
+            this.ClientSize = new System.Drawing.Size(1828, 806);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.btnCauta);
             this.Controls.Add(this.Cart);
             this.Controls.Add(this.dgvGames);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbGenre);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.iblPrice);
@@ -250,9 +279,12 @@
         private System.Windows.Forms.Label iblPrice;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.NumericUpDown txtPrice;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbGenre;
         private System.Windows.Forms.DataGridView dgvGames;
         private System.Windows.Forms.Button Cart;
+        private System.Windows.Forms.Button btnCauta;
+        private System.Windows.Forms.TextBox txtSearch;
+        
     }
 }
 

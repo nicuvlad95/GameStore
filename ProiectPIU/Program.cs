@@ -14,7 +14,7 @@ namespace VideoGameStore
             string numeFisier = ConfigurationManager.AppSettings["NumeFisier"];
             AdministrareGames_FisierText adminGames = new AdministrareGames_FisierText(numeFisier);
             int nrGames = 0;
-            VideoGame game = new VideoGame(nrGames, "");
+            //VideoGame game = new VideoGame(nrGames, "");
 
             string optiune;
             do
@@ -32,23 +32,23 @@ namespace VideoGameStore
                         int idGame = nrGames;
 
                         Console.WriteLine("Introdu numele jocului {0} : ", idGame);
-                        string nume = Console.ReadLine();
-                        game = new VideoGame(idGame, nume);
-                        nrGames++;
+                       // string nume = Console.ReadLine();
+                       // game = new VideoGame(idGame, nume);
+                       // nrGames++;
 
                         break;
                     case "A":
-                        game.Info();
+                        //game.Info();
 
                         break;
                     case "F":
-                        List<VideoGame> Games = adminGames.GetVideoGames( nrGames);
+                       // List<VideoGame> Games = adminGames.GetVideoGames( nrGames);
                         //AfisareGames(Games, nrGames);
 
                         break;
                     case "S":
                         //adaugare joc in fisier
-                        adminGames.AddGame(game);
+                        //adminGames.AddGame(game);
 
                         break;
                     case "X":
