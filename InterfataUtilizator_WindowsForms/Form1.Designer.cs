@@ -45,11 +45,16 @@ namespace InterfataUtilizator_WindowsForms
             this.txtPrice = new System.Windows.Forms.NumericUpDown();
             this.cbGenre = new System.Windows.Forms.ComboBox();
             this.dgvGames = new System.Windows.Forms.DataGridView();
-            this.Cart = new System.Windows.Forms.Button();
             this.btnCauta = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblPrice2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // iblName
@@ -61,7 +66,6 @@ namespace InterfataUtilizator_WindowsForms
             this.iblName.Size = new System.Drawing.Size(53, 20);
             this.iblName.TabIndex = 0;
             this.iblName.Text = "Name";
-            this.iblName.Click += new System.EventHandler(this.label1_Click);
             // 
             // iblPublisher
             // 
@@ -188,35 +192,23 @@ namespace InterfataUtilizator_WindowsForms
             this.cbGenre.Name = "cbGenre";
             this.cbGenre.Size = new System.Drawing.Size(270, 28);
             this.cbGenre.TabIndex = 22;
-            this.cbGenre.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dgvGames
             // 
             this.dgvGames.BackgroundColor = System.Drawing.Color.MediumTurquoise;
             this.dgvGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGames.Location = new System.Drawing.Point(467, 60);
+            this.dgvGames.Location = new System.Drawing.Point(467, 105);
             this.dgvGames.Name = "dgvGames";
             this.dgvGames.RowHeadersWidth = 51;
             this.dgvGames.RowTemplate.Height = 24;
-            this.dgvGames.Size = new System.Drawing.Size(961, 373);
+            this.dgvGames.Size = new System.Drawing.Size(961, 265);
             this.dgvGames.TabIndex = 23;
-            // 
-            // Cart
-            // 
-            this.Cart.BackColor = System.Drawing.Color.LightCoral;
-            this.Cart.Location = new System.Drawing.Point(1333, 12);
-            this.Cart.Name = "Cart";
-            this.Cart.Size = new System.Drawing.Size(95, 45);
-            this.Cart.TabIndex = 24;
-            this.Cart.Text = "Cart";
-            this.Cart.UseMnemonic = false;
-            this.Cart.UseVisualStyleBackColor = false;
-            this.Cart.Click += new System.EventHandler(this.Cart_Click);
+            this.dgvGames.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGame_CellContentClick);
             // 
             // btnCauta
             // 
             this.btnCauta.BackColor = System.Drawing.Color.LightGreen;
-            this.btnCauta.Location = new System.Drawing.Point(747, 24);
+            this.btnCauta.Location = new System.Drawing.Point(951, 72);
             this.btnCauta.Name = "btnCauta";
             this.btnCauta.Size = new System.Drawing.Size(111, 30);
             this.btnCauta.TabIndex = 25;
@@ -226,18 +218,75 @@ namespace InterfataUtilizator_WindowsForms
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(467, 24);
+            this.txtSearch.Location = new System.Drawing.Point(667, 72);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(262, 27);
             this.txtSearch.TabIndex = 26;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.MediumTurquoise;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(467, 420);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(961, 270);
+            this.dataGridView1.TabIndex = 27;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.Red;
+            this.lblTotal.Location = new System.Drawing.Point(460, 693);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(284, 38);
+            this.lblTotal.TabIndex = 28;
+            this.lblTotal.Text = "Nr Total Games: 0";
+            // 
+            // lblPrice2
+            // 
+            this.lblPrice2.AutoSize = true;
+            this.lblPrice2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice2.ForeColor = System.Drawing.Color.Red;
+            this.lblPrice2.Location = new System.Drawing.Point(1211, 693);
+            this.lblPrice2.Name = "lblPrice2";
+            this.lblPrice2.Size = new System.Drawing.Size(209, 38);
+            this.lblPrice2.TabIndex = 29;
+            this.lblPrice2.Text = "Total Price: 0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F);
+            this.label1.Location = new System.Drawing.Point(471, 378);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 38);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Cart";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F);
+            this.label2.Location = new System.Drawing.Point(471, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(184, 38);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "GameStore";
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.LightCyan;
             this.ClientSize = new System.Drawing.Size(1828, 806);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPrice2);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnCauta);
-            this.Controls.Add(this.Cart);
             this.Controls.Add(this.dgvGames);
             this.Controls.Add(this.cbGenre);
             this.Controls.Add(this.txtPrice);
@@ -259,6 +308,7 @@ namespace InterfataUtilizator_WindowsForms
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,10 +331,13 @@ namespace InterfataUtilizator_WindowsForms
         private System.Windows.Forms.NumericUpDown txtPrice;
         private System.Windows.Forms.ComboBox cbGenre;
         private System.Windows.Forms.DataGridView dgvGames;
-        private System.Windows.Forms.Button Cart;
         private System.Windows.Forms.Button btnCauta;
         private System.Windows.Forms.TextBox txtSearch;
-        
+        private DataGridView dataGridView1;
+        private Label lblTotal;
+        private Label lblPrice2;
+        private Label label1;
+        private Label label2;
     }
 }
 

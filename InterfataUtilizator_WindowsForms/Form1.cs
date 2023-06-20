@@ -11,29 +11,25 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.CompilerServices;
 
 namespace InterfataUtilizator_WindowsForms
 {
     public partial class Form1 : Form
     {
         private List<VideoGame> Games = new List<VideoGame> { };
-        private Label[] iblsName;
 
-        private const int LATIME_CONTROL = 100;
-        private const int DIMENSIUNE_PAS_Y = 30;
-        private const int DIMENSIUNE_PAS_X = 120;
-        private const int OFFSET_X = 600;
+        private List<VideoGame> NewListGames = new List<VideoGame> { };
+
+
+
+
         public Form1()
         {
             InitializeComponent();
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -60,34 +56,15 @@ namespace InterfataUtilizator_WindowsForms
 
         private void btnListGames_Click(object sender, EventArgs e)
         {
-            dgvGames.DataSource = null;
-            dgvGames.Columns.Clear();
-
-            AdministrareGames_FisierText adminGames = new AdministrareGames_FisierText("games");
-            Games = adminGames.GetVideoGames(10);
-            
-            var buyButton = new DataGridViewButtonColumn();
-            buyButton.Name = "Buy";
-            buyButton.HeaderText = "Buy";
-            buyButton.UseColumnTextForButtonValue = true;
-            buyButton.Text = "Buy";
-            buyButton.FlatStyle = FlatStyle.Flat;
-            buyButton.DefaultCellStyle.BackColor = Color.Orange;
-            
-            dgvGames.DataSource = Games;
-            dgvGames.Columns.Add(buyButton);
+            AfisareGames();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            AfisareGames();
         }
 
-        private void Cart_Click(object sender, EventArgs e)
-        {
-            var myCart = new Cart();
-            myCart.Show();
-        }
+
+
         private void ResetareControale()
         {
             txtName.Text = txtDeveloper.Text = txtPublisher.Text = txtPrice.Text = string.Empty;
@@ -99,30 +76,76 @@ namespace InterfataUtilizator_WindowsForms
             else return true;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+
 
         private void btnCauta_Click(object sender, EventArgs e)
         {
-            //AdministrareGames_FisierText adminGames = new AdministrareGames_FisierText("games");
-            //List<VideoGame> games = adminGames.GetVideoGames(10);
+
             List<VideoGame> NewGames = new List<VideoGame>();
 
-           foreach (VideoGame game in Games)
+            foreach (VideoGame game in Games)
             {
-                if (txtSearch.Text == game.Title)
+                if (txtSearch.Text.ToLower() == game.Title.ToLower())
                 {
 
                     NewGames.Add(game);
                     dgvGames.DataSource = NewGames;
-
-
                 }
-                else continue;
+
             }
 
         }
+        private void dgvGame_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+
+                NewListGames.Add(Games[e.RowIndex]);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = NewListGames;
+                lblTotal.Text = $"Nr Total Games:{NewListGames.Count.ToString()}";
+                lblPrice2.Text = $"Total price:{CalculeazaPretulTotal()}";
+            };
+
+        }
+
+        private int CalculeazaPretulTotal()
+        {
+            int total = 0;
+            foreach (VideoGame game in NewListGames)
+            {
+                total = total + Convert.ToInt32(game.Price);
+            }
+            return total;
+
+        }
+
+
+        private void AfisareGames()
+        {
+            dgvGames.DataSource = null;
+            dgvGames.Columns.Clear();
+
+            AdministrareGames_FisierText adminGames = new AdministrareGames_FisierText("games");
+            Games = adminGames.GetVideoGames(10);
+
+            var buyButton = new DataGridViewButtonColumn();
+            buyButton.Name = "Buy";
+            buyButton.HeaderText = "Buy";
+            buyButton.UseColumnTextForButtonValue = true;
+            buyButton.Text = "Buy";
+            buyButton.FlatStyle = FlatStyle.Flat;
+            buyButton.DefaultCellStyle.BackColor = Color.Orange;
+
+
+            dgvGames.DataSource = Games;
+            dgvGames.Columns.Add(buyButton);
+
+        }
+
 
     }
 }
